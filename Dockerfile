@@ -1,7 +1,7 @@
-ARG from_build=rust:alpine
+ARG from_build=rust
 ARG from=alpine
 
-FROM ${from_build} AS build
+FROM ${from_build}:alpine AS build
 RUN set -ex \
     ; apk add --no-cache \
         linux-headers \
