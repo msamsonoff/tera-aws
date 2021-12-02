@@ -56,7 +56,8 @@ fn main() -> Result<()> {
         let dir_entry = dir_entry?;
         let metadata = dir_entry.metadata()?;
         if metadata.is_file() {
-            let path = dir_entry.path().canonicalize()?;
+            let path = dir_entry.path();
+            let path = path.canonicalize().map_err_with_path(path)?;
             let name = path
                 .to_str()
                 .ok_or_else(|| TeraAwsError::InvalidUtf8Path(path.clone()))?
