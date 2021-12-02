@@ -1,7 +1,7 @@
-ARG from_build=rust
-ARG from=alpine
+ARG FROM_ALPINE=alpine
+ARG FROM_RUST=rust
 
-FROM ${from_build}:alpine AS build
+FROM ${FROM_RUST}:alpine AS build
 RUN set -ex \
     ; apk add --no-cache \
         linux-headers \
@@ -14,6 +14,6 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry \
     ; cargo build --release \
     ; strip -o '/usr/local/bin/tera-aws' './target/release/tera-aws'
 
-FROM ${from}
+FROM ${FROM_ALPINE}
 COPY --from=build [ "/usr/local/bin/tera-aws", "/usr/local/bin/tera-aws" ]
 CMD [ "/usr/local/bin/tera-aws" ]
