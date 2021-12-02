@@ -3,7 +3,6 @@ use std::sync::Arc;
 
 use aws_sdk_secretsmanager::Client;
 use aws_types::config::Config;
-use eyre::Result;
 use serde_json::value::from_value;
 use serde_json::{from_str, Value};
 use tera::{Function, Tera};

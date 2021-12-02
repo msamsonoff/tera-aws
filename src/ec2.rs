@@ -4,8 +4,6 @@ use std::sync::Arc;
 use aws_sdk_ec2::model::{Filter, ResourceType};
 use aws_sdk_ec2::Client;
 use aws_types::config::Config;
-use eyre::Result;
-use serde::Deserialize;
 use serde_json::{from_value, Map, Value};
 use tera::{Function, Tera};
 use tokio::runtime::Runtime;

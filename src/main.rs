@@ -1,5 +1,3 @@
-#![allow(unused)]
-
 mod ec2;
 mod imds;
 mod secretsmanager;
