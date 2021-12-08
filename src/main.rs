@@ -90,7 +90,11 @@ fn main() -> Result<()> {
         .to_str()
         .ok_or_else(|| TeraAwsError::InvalidUtf8Path(template_name.clone()))?;
     let context = Context::new();
-    let file = NamedTempFile::new()?;
+    let file = if let Some(dir) = output_path.parent() {
+        NamedTempFile::new_in(dir)
+    } else {
+        NamedTempFile::new()
+    }?;
     tera.render_to(template_name, &context, &file)?;
     file.persist(output_path)?;
 
